@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinasyonlar | Private Turkey - Ayrıcalıklı Rotalar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .dest-card:hover .dest-overlay { opacity: 1; }
+        .dest-overlay {
+            background: linear-gradient(to top, rgba(0,35,102,0.9), transparent);
+            transition: all 0.4s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <nav class="flex justify-between items-center p-6 bg-white shadow-md sticky top-0 z-50">
+        <div class="text-2xl font-bold text-blue-900 italic">PRIVATE<span class="text-yellow-600">TURKEY</span></div>
+        <ul class="hidden md:flex space-x-8 font-medium">
+            <li><a href="index.html" class="hover:text-yellow-600 transition">Ana Sayfa</a></li>
+            <li><a href="tours.html" class="hover:text-yellow-600 transition">Turlar</a></li>
+            <li><a href="destinations.html" class="hover:text-yellow-600 transition">Varış Noktaları</a></li>
+            <li><a href="about_use.html" class="hover:text-yellow-600 transition">Hakkımızda</a></li>
+            <li><a href="contact.html" class="hover:text-yellow-600 transition">İletişim</a></li>
+        </ul>
+    </nav>
+
+    <header class="py-16 bg-blue-900 text-center text-white">
+        <h1 class="text-4xl md:text-5xl mb-4">Eşsiz Rotalarımız</h1>
+        <p class="max-w-2xl mx-auto px-4 font-light text-blue-100">
+            Türkiye'nin en ikonik noktalarını kalabalıklardan uzak, size özel rehberler ve ultra lüks imkanlarla keşfedin.
+        </p>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 py-8 flex flex-wrap justify-center gap-4">
+        <button class="px-6 py-2 bg-yellow-600 text-white rounded-full">Tümü</button>
+        <button class="px-6 py-2 bg-white border border-gray-300 hover:border-yellow-600 rounded-full transition">Kültür Turları</button>
+        <button class="px-6 py-2 bg-white border border-gray-300 hover:border-yellow-600 rounded-full transition">Ege & Akdeniz</button>
+        <button class="px-6 py-2 bg-white border border-gray-300 hover:border-yellow-600 rounded-full transition">Kış Turizmi</button>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-6 pb-20">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="dest-card relative h-[450px] rounded-2xl overflow-hidden shadow-2xl group">
+                <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="İstanbul">
+                <div class="dest-overlay absolute inset-0 opacity-70 flex flex-col justify-end p-8">
+                    <h3 class="text-3xl text-white mb-2">İstanbul</h3>
+                    <p class="text-blue-100 text-sm mb-4">İki kıtanın birleştiği noktada, Bizans ve Osmanlı mirasını özel bir yatın güvertesinden izleyin.</p>
+                    <a href="#" class="text-yellow-500 font-semibold uppercase tracking-widest text-xs">Detayları İncele →</a>
+                </div>
+            </div>
+
+            <div class="dest-card relative h-[450px] rounded-2xl overflow-hidden shadow-2xl group">
+                <img src="https://images.unsplash.com/photo-1547948270-496664972986?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Kapadokya">
+                <div class="dest-overlay absolute inset-0 opacity-70 flex flex-col justify-end p-8">
+                    <h3 class="text-3xl text-white mb-2">Kapadokya</h3>
+                    <p class="text-blue-100 text-sm mb-4">Sadece size özel gün doğumu balon turları ve peri bacalarında şarap tadımı.</p>
+                    <a href="#" class="text-yellow-500 font-semibold uppercase tracking-widest text-xs">Detayları İncele →</a>
+                </div>
+            </div>
+
+            <div class="dest-card relative h-[450px] rounded-2xl overflow-hidden shadow-2xl group">
+                <img src="https://images.unsplash.com/photo-1517931524326-bdd55a526503?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Bodrum">
+                <div class="dest-overlay absolute inset-0 opacity-70 flex flex-col justify-end p-8">
+                    <h3 class="text-3xl text-white mb-2">Bodrum & Göcek</h3>
+                    <p class="text-blue-100 text-sm mb-4">Turkuaz sularda lüks guletlerle mavi yolculuk ve özel beach club rezervasyonları.</p>
+                    <a href="#" class="text-yellow-500 font-semibold uppercase tracking-widest text-xs">Detayları İncele →</a>
+                </div>
+            </div>
+
+            <div class="dest-card relative h-[450px] rounded-2xl overflow-hidden shadow-2xl group">
+                <img src="https://images.unsplash.com/photo-1621244299818-2d1b0923054a?auto=format&fit=crop&q=80&w=800" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Efes">
+                <div class="dest-overlay absolute inset-0 opacity-70 flex flex-col justify-end p-8">
+                    <h3 class="text-3xl text-white mb-2">Efes (Ephesus)</h3>
+                    <p class="text-blue-100 text-sm mb-4">Antik kenti turist kalabalıkları olmadan, özel rehberinizle derinlemesine keşfedin.</p>
+                    <a href="#" class="text-yellow-500 font-semibold uppercase tracking-widest text-xs">Detayları İncele →</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <section class="bg-gray-100 py-20 border-t border-gray-200">
+        <div class="max-w-4xl mx-auto text-center px-4">
+            <h2 class="text-3xl text-blue-900 mb-6">Kendi Rotanızı Çizmek İster Misiniz?</h2>
+            <p class="mb-8 text-gray-600">Sizin için tamamen kişiselleştirilmiş bir seyahat planı hazırlayabiliriz. Concierge ekibimizle iletişime geçin.</p>
+            <button class="bg-blue-900 text-white px-10 py-4 rounded-md hover:bg-yellow-600 transition duration-300">Özel Plan Talebi Oluştur</button>
+        </div>
+    </section>
+
+    <footer class="bg-white py-8 border-t">
+        <div class="text-center text-gray-500 text-sm">
+            © 2026  2026 Private Travel Turkiye - All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
