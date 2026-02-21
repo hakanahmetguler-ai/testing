@@ -7,24 +7,47 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #fff; scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #fff; scroll-behavior: smooth; overflow-x: hidden; }
         h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
-        nav { height: 90px; position: fixed; top: 0; width: 100%; z-index: 1000; }
-        .dropdown-menu { visibility: hidden; opacity: 0; top: 100%; left: 0; transform: translateY(-10px); transition: all 0.3s ease; pointer-events: none; }
-        .group:hover .dropdown-menu { visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto; }
-        .nav-link-text::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -32px; left: 0; background-color: #bfa37e; transition: width 0.3s ease; }
-        .group:hover .nav-link-text::after { width: 100%; }
+        
+        nav { height: 80px; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        
+        /* Desktop Hover Efektleri */
+        @media (min-width: 768px) {
+            .dropdown-menu { 
+                visibility: hidden; opacity: 0; top: 100%; left: 0; 
+                transform: translateY(-10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+                pointer-events: none; 
+            }
+            .group:hover .dropdown-menu { visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto; }
+            .nav-link-text::after { 
+                content: ''; position: absolute; width: 0; height: 2px; bottom: -28px; 
+                left: 0; background-color: #bfa37e; transition: width 0.3s ease; 
+            }
+            .group:hover .nav-link-text::after { width: 100%; }
+        }
+
+        /* Mobile Menu Animasyonu */
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(100%);
+        }
+        #mobile-menu.active {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body>
 
     <nav class="bg-white/95 backdrop-blur-sm border-b border-gray-100 flex items-center shadow-sm">
-        <div class="max-w-[1600px] mx-auto px-8 w-full flex justify-between items-center h-full">
+        <div class="max-w-[1600px] mx-auto px-6 md:px-8 w-full flex justify-between items-center h-full">
+            
             <div class="flex-1">
-                <a href="index.html" class="text-lg md:text-xl font-serif tracking-[0.15em] font-bold uppercase whitespace-nowrap">
+                <a href="index.html" class="text-sm md:text-xl font-serif tracking-[0.1em] md:tracking-[0.15em] font-bold uppercase whitespace-nowrap">
                     Private <span class="text-[#bfa37e]">Travel</span> Turkey
                 </a>
             </div>
+
             <ul class="hidden md:flex space-x-10 h-full items-center justify-center">
                 <li class="relative group h-full flex items-center">
                     <a href="#" class="text-[#bfa37e] text-[12px] font-bold tracking-widest flex items-center h-full">
@@ -33,7 +56,7 @@
                     </a>
                     <div class="dropdown-menu absolute w-60 bg-white shadow-xl border-t-2 border-[#bfa37e]">
                         <div class="flex flex-col">
-                            <a href="cultural-tours.html" class="px-8 py-5 text-[11px] uppercase tracking-widest text-[#bfa37e] bg-[#fcfaf7] transition-all border-b border-gray-50 flex justify-between items-center">Cultural Tours <span>→</span></a>
+                            <a href="cultural-tours.html" class="px-8 py-5 text-[11px] uppercase tracking-widest text-[#bfa37e] bg-[#fcfaf7] border-b border-gray-50 flex justify-between items-center">Cultural Tours <span>→</span></a>
                             <a href="blue-cruise.html" class="px-8 py-5 text-[11px] uppercase tracking-widest text-gray-700 hover:bg-[#fcfaf7] hover:text-[#bfa37e] transition-all flex justify-between items-center group/item">Blue Cruise <span>→</span></a>
                         </div>
                     </div>
@@ -42,30 +65,72 @@
                 <li class="h-full flex items-center"><a href="about_use.html" class="text-gray-800 text-[12px] font-bold tracking-widest uppercase"><span class="nav-link-text">About Us</span></a></li>
                 <li class="h-full flex items-center"><a href="contact.html" class="text-gray-800 text-[12px] font-bold tracking-widest uppercase"><span class="nav-link-text">Contact</span></a></li>
             </ul>
-            <div class="flex-1 flex justify-end items-center space-x-6">
-                <a href="#" class="text-gray-400 hover:text-[#bfa37e] text-[10px] font-bold tracking-widest uppercase transition-colors">Instagram</a>
-                <a href="#" class="text-gray-400 hover:text-[#bfa37e] text-[10px] font-bold tracking-widest uppercase transition-colors">Linkedin</a>
+
+            <div class="flex-1 flex justify-end items-center">
+                <button id="menu-btn" class="md:hidden text-gray-800 focus:outline-none p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <div class="hidden lg:flex space-x-6 text-gray-400 text-[10px] font-bold tracking-widest uppercase">Instagram
+                </div>
             </div>
         </div>
     </nav>
 
-    <header class="pt-56 pb-20 text-center">
-        <h1 class="text-6xl font-serif italic">Cultural Heritage</h1>
-        <p class="text-[#bfa37e] uppercase tracking-[0.4em] text-[10px] mt-4 font-bold">Unveiling Centuries of Anatolian Secrets</p>
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[2000] md:hidden flex flex-col p-8">
+        <div class="flex justify-end">
+            <button id="close-btn" class="text-gray-800 p-2">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <ul class="flex flex-col space-y-6 mt-12">
+            <li><a href="index.html" class="text-3xl font-serif italic text-gray-800 border-b border-gray-100 pb-2 block">Home</a></li>
+            <li>
+                <span class="text-[10px] uppercase tracking-widest text-[#bfa37e] font-bold block mb-4">Our Tours</span>
+                <div class="pl-4 flex flex-col space-y-4">
+                    <a href="cultural-tours.html" class="text-xl font-serif italic text-[#bfa37e]">Cultural Tours</a>
+                    <a href="blue-cruise.html" class="text-xl font-serif italic text-gray-500">Blue Cruise</a>
+                </div>
+            </li>
+            <li><a href="destinations.html" class="text-3xl font-serif italic text-gray-800 border-b border-gray-100 pb-2 block">Destinations</a></li>
+            <li><a href="about_use.html" class="text-3xl font-serif italic text-gray-800 border-b border-gray-100 pb-2 block">About Us</a></li>
+            <li><a href="contact.html" class="text-3xl font-serif italic text-gray-800 border-b border-gray-100 pb-2 block">Contact</a></li>
+        </ul>
+    </div>
+
+    <header class="pt-40 md:pt-56 pb-12 md:pb-20 text-center px-4">
+        <h1 class="text-4xl md:text-6xl font-serif italic mb-4">Cultural Heritage</h1>
+        <p class="text-[#bfa37e] uppercase tracking-[0.3em] md:tracking-[0.4em] text-[9px] md:text-[10px] font-bold">Unveiling Centuries of Anatolian Secrets</p>
     </header>
 
-    <main class="max-w-[1400px] mx-auto px-8 pb-32">
-        <div class="bg-stone-50 p-12 md:p-20 grid md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h3 class="text-4xl font-serif italic mb-8">History Reimagined</h3>
-                <p class="text-gray-500 leading-loose italic mb-8">"Efeles'ten Kapadokya'ya, Göbeklitepe'den İstanbul'un gizli sarnıçlarına... Sadece gezmiyor, tarihin içinde bir yolculuğa çıkıyoruz."</p>
-                <button class="bg-gray-900 text-white px-10 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-[#bfa37e] transition-all">View Itinerary</button>
+    <main class="max-w-[1400px] mx-auto px-6 md:px-8 pb-20 md:pb-32">
+        <div class="bg-stone-50 p-8 md:p-16 lg:p-20 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div class="text-center lg:text-left order-2 lg:order-1">
+                <h3 class="text-3xl md:text-4xl font-serif italic mb-6 lg:mb-8">History Reimagined</h3>
+                <p class="text-gray-500 leading-relaxed md:leading-loose italic mb-8 text-base md:text-lg">"Efeles'ten Kapadokya'ya, Göbeklitepe'den İstanbul'un gizli sarnıçlarına... Sadece gezmiyor, tarihin içinde bir yolculuğa çıkıyoruz."</p>
+                <button class="w-full md:w-auto bg-gray-900 text-white px-10 py-4 text-[10px] font-bold uppercase tracking-widest hover:bg-[#bfa37e] transition-all">View Itinerary</button>
             </div>
-            <div class="grid grid-cols-2 gap-4">
-                <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&q=80" class="w-full h-64 object-cover">
-                <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&q=80" class="w-full h-64 object-cover mt-8">
+            
+            <div class="grid grid-cols-2 gap-3 md:gap-4 order-1 lg:order-2">
+                <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&q=80" class="w-full h-48 md:h-64 object-cover rounded-sm shadow-lg">
+                <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&q=80" class="w-full h-48 md:h-64 object-cover mt-6 md:mt-10 rounded-sm shadow-lg">
             </div>
         </div>
     </main>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    </script>
 </body>
 </html>

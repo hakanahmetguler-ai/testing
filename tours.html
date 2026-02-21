@@ -9,43 +9,136 @@
     <style>
         body { font-family: 'Montserrat', sans-serif; overflow-x: hidden; background-color: #fff; }
         h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
-        .nav-link { position: relative; text-transform: none; }
-        .nav-link::after { content: ''; position: absolute; width: 0; height: 1.5px; bottom: -4px; left: 0; background-color: #bfa37e; transition: width 0.4s ease; }
-        .nav-link:hover::after { width: 100%; }
-        .dropdown-menu { display: none; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
-        .group:hover .dropdown-menu { display: block; opacity: 1; transform: translateY(0); }
+        
+        nav { height: 80px; position: fixed; top: 0; width: 100%; z-index: 1000; }
+        
+        /* Desktop Hover Effects */
+        @media (min-width: 768px) {
+            .dropdown-menu { 
+                display: block; visibility: hidden; opacity: 0; top: 100%; left: 0; 
+                transform: translateY(-10px); transition: all 0.3s ease; 
+                pointer-events: none; 
+            }
+            .group:hover .dropdown-menu { visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto; }
+            .nav-link-text::after { 
+                content: ''; position: absolute; width: 0; height: 2px; bottom: -28px; 
+                left: 0; background-color: #bfa37e; transition: width 0.3s ease; 
+            }
+            .group:hover .nav-link-text::after { width: 100%; }
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(100%);
+        }
+        #mobile-menu.active { transform: translateX(0); }
     </style>
 </head>
 <body>
-    <nav class="fixed w-full z-[100] bg-white/95 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-[1600px] mx-auto px-6 py-6 flex justify-between items-center">
-            <a href="index.html" class="text-xl md:text-2xl font-serif tracking-[0.2em] text-gray-900 uppercase font-bold">
-                Private <span class="text-[#bfa37e]">Travel</span> Turkey
-            </a>
-            <ul class="hidden md:flex space-x-12 text-[13px] font-bold text-gray-800 items-center">
-                <li class="relative group">
-                    <a href="tours.html" class="text-[#bfa37e] flex items-center py-2">
-                        Tours <svg class="w-3.5 h-3.5 ml-2 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3"></path></svg>
+
+    <nav class="bg-white/95 backdrop-blur-sm border-b border-gray-100 flex items-center shadow-sm z-[1000]">
+        <div class="max-w-[1600px] mx-auto px-6 md:px-8 w-full flex justify-between items-center h-full">
+            
+            <div class="flex-1">
+                <a href="index.html" class="text-sm md:text-xl font-serif tracking-[0.1em] md:tracking-[0.15em] font-bold uppercase whitespace-nowrap text-gray-900">
+                    Private <span class="text-[#bfa37e]">Travel</span> Turkey
+                </a>
+            </div>
+
+            <ul class="hidden md:flex space-x-10 h-full items-center justify-center">
+                <li class="relative group h-full flex items-center">
+                    <a href="tours.html" class="text-[#bfa37e] text-[12px] font-bold tracking-widest flex items-center h-full">
+                        <span class="nav-link-text uppercase">Tours</span>
+                        <svg class="w-3.5 h-3.5 ml-2 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </a>
-                    <div class="dropdown-menu absolute left-0 mt-4 w-60 bg-white shadow-2xl border border-gray-50 py-5">
-                        <a href="#cultural" class="block px-8 py-3 text-[12px] text-gray-600 hover:text-[#bfa37e] hover:bg-gray-50 transition font-bold">Cultural tours</a>
-                        <a href="#blue-cruise" class="block px-8 py-3 text-[12px] text-gray-600 hover:text-[#bfa37e] hover:bg-gray-50 transition font-bold">Blue cruise</a>
+                    <div class="dropdown-menu absolute w-60 bg-white shadow-2xl border-t-2 border-[#bfa37e] py-4">
+                        <a href="cultural-tours.html" class="block px-8 py-3 text-[11px] uppercase tracking-widest text-gray-700 hover:text-[#bfa37e] transition-all">Cultural tours</a>
+                        <a href="blue-cruise.html" class="block px-8 py-3 text-[11px] uppercase tracking-widest text-gray-700 hover:text-[#bfa37e] transition-all">Blue cruise</a>
                     </div>
                 </li>
-                <li><a href="destinations.html" class="nav-link">Destinations</a></li>
-                <li><a href="about_use.html" class="nav-link">About us</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="h-full flex items-center"><a href="destinations.html" class="text-gray-800 text-[12px] font-bold tracking-widest uppercase hover:text-[#bfa37e] transition-colors"><span class="nav-link-text">Destinations</span></a></li>
+                <li class="h-full flex items-center"><a href="about_use.html" class="text-gray-800 text-[12px] font-bold tracking-widest uppercase hover:text-[#bfa37e] transition-colors"><span class="nav-link-text">About Us</span></a></li>
+                <li class="h-full flex items-center"><a href="contact.html" class="text-gray-800 text-[12px] font-bold tracking-widest uppercase hover:text-[#bfa37e] transition-colors"><span class="nav-link-text">Contact</span></a></li>
             </ul>
-            <div class="hidden md:flex items-center space-x-6 text-gray-400">
-                <a href="#" class="hover:text-[#bfa37e] transition-all"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259 0 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-                <a href="#" class="hover:text-[#bfa37e] transition-all"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+
+            <div class="flex-1 flex justify-end items-center">
+                <button id="menu-btn" class="md:hidden text-gray-800 p-2">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <div class="hidden lg:flex space-x-4 text-gray-400">
+                    <span class="text-[10px] font-bold tracking-widest uppercase">Instagram</span>
+                </div>
             </div>
         </div>
     </nav>
 
-    <header class="pt-48 pb-20 px-6 text-center bg-gray-50">
-        <h1 class="text-5xl md:text-7xl font-serif italic mb-6">Our Tours</h1>
-        <p class="text-gray-400 uppercase tracking-[0.5em] text-[10px]">Exceptional Journeys</p>
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[2000] md:hidden flex flex-col p-8">
+        <div class="flex justify-end">
+            <button id="close-btn" class="text-gray-800 p-2">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <ul class="flex flex-col space-y-6 mt-12">
+            <li><a href="index.html" class="text-3xl font-serif italic text-gray-800 border-b border-gray-50 pb-2 block">Home</a></li>
+            <li>
+                <span class="text-[10px] uppercase tracking-widest text-[#bfa37e] font-bold block mb-4">Our Experiences</span>
+                <div class="pl-4 flex flex-col space-y-4">
+                    <a href="cultural-tours.html" class="text-xl font-serif italic text-gray-700">Cultural Tours</a>
+                    <a href="blue-cruise.html" class="text-xl font-serif italic text-gray-700">Blue Cruise</a>
+                </div>
+            </li>
+            <li><a href="destinations.html" class="text-3xl font-serif italic text-gray-800 border-b border-gray-50 pb-2 block">Destinations</a></li>
+            <li><a href="about_use.html" class="text-3xl font-serif italic text-gray-800 border-b border-gray-50 pb-2 block">About Us</a></li>
+            <li><a href="contact.html" class="text-3xl font-serif italic text-gray-800 border-b border-gray-50 pb-2 block">Contact</a></li>
+        </ul>
+    </div>
+
+    <header class="pt-32 md:pt-48 pb-12 md:pb-20 px-6 text-center bg-gray-50">
+        <h1 class="text-4xl md:text-7xl font-serif italic mb-4 md:mb-6 leading-tight">Our Tours</h1>
+        <p class="text-[#bfa37e] uppercase tracking-[0.4em] md:tracking-[0.5em] text-[9px] md:text-[10px] font-bold">Exceptional Journeys</p>
     </header>
-    </body>
+
+    <main class="max-w-[1400px] mx-auto px-6 py-16 md:py-24">
+        <div class="grid md:grid-cols-2 gap-8 md:gap-16">
+            <a href="cultural-tours.html" class="group block">
+                <div class="relative h-[400px] md:h-[600px] overflow-hidden mb-6">
+                    <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&q=80" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500"></div>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-serif italic mb-2">Cultural Heritage</h3>
+                <p class="text-[10px] uppercase tracking-widest text-[#bfa37e] font-bold">Explore History <span>→</span></p>
+            </a>
+
+            <a href="blue-cruise.html" class="group block md:mt-12">
+                <div class="relative h-[400px] md:h-[600px] overflow-hidden mb-6">
+                    <img src="https://images.unsplash.com/photo-1544644024-00100d862024?auto=format&fit=crop&q=80" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500"></div>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-serif italic mb-2">The Blue Cruise</h3>
+                <p class="text-[10px] uppercase tracking-widest text-[#bfa37e] font-bold">Sailing Dreams <span>→</span></p>
+            </a>
+        </div>
+    </main>
+
+    <footer class="bg-white py-12 border-t border-gray-100 text-center">
+        <p class="text-[9px] tracking-[0.5em] uppercase text-gray-400">© 2026 Private Travel Turkey</p>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    </script>
+</body>
 </html>
